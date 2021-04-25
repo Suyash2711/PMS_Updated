@@ -4,11 +4,13 @@ from PIL import ImageTk
 from tkinter import ttk, messagebox
 from tkinter import messagebox
 import sqlite3
-#from register_main import Register
+from register_main import Register
 # from EMP import *
 
 class Login:
     def __init__(self,root):
+
+
         self.root=root
         self.root.title("Login System")
         self.root.geometry("1199x600+100+50")
@@ -32,7 +34,7 @@ class Login:
         self.txt_pass = Entry(Frame_login, font=("time new roman", 15), bg="light gray")
         self.txt_pass.place(x=90, y=240, width=350, height=35)
 
-        forget_button=Button(Frame_login,text="New User? Register Here",cursor="hand2",bg="white",fg="dark blue",bd=0,font=("times new roman",12)).place(x=90,y=280)
+        forget_button=Button(Frame_login,command=self.register,text="New User? Register Here",cursor="hand2",bg="white",fg="dark blue",bd=0,font=("times new roman",12)).place(x=90,y=280)
         login_button = Button(self.root,command=self.login_function,cursor="hand2", text="Login", fg="white", bg="dark blue",font=("times new roman", 20)).place(x=300, y=470,width=180,height=40)
 
 
@@ -58,38 +60,26 @@ class Login:
             user_entry = self.txt_user.get()
             password_entry = self.txt_user.get()
 
+
             for i in row_user:
                 if i == user_entry:
-                    print("Username Found")
+                    import EMP
+                    #messagebox.showinfo("Success", "Welcome", parent=self.root)
+                    self.root.destroy()
                 # else:
-                #     print("Username Not Found")
+                #      messagebox.showerror("Error", "Invalid Username and Password", parent=self.root)
 
-
-            # if user_entry in row_user:
-            #     print("Username is correct")
-            # #else:
-            #     print("Invalid Username and Password")
-
-            # if row==None:
-            #     messagebox.showerror("Error", "Invalid Username and Password", parent=self.root)
-            # else:
-            #     messagebox.showinfo("Success", "Welcome", parent=self.root)
-
-            # messagebox.showinfo("Welcome", f"Welcome {self.txt_user.get()}\n Your Password: {self.txt_pass.get()}", parent=self.root)
-            # self.login()
 
     def login(self):
         print(self.txt_user.get(), self.txt_pass.get())
 
 
-
-    def register(self,root):
-        pass
+    def register(self):
+        print("Hi register")
+        register_obj = Register(self.root)
+        #register_obj.register_data()
         #Register()
 
-
-
-
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
@@ -99,6 +89,7 @@ class Login:
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
-root=Tk()
-obj=Login(root)
-root.mainloop()
+if __name__=='__main__':
+    root=Tk()
+    obj=Login(root)
+    root.mainloop()
