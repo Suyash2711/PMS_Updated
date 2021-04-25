@@ -71,7 +71,7 @@ class Register:
         btn_display = Button(frame1, text="record", font=("times new roman", 17), cursor="hand2",command=self.disp).place(x=170, y=420)
         btn_delete = Button(frame1, text="Delete", font=("times new roman", 17), cursor="hand2",command=self.dele).place(x=440, y=420)
 
-        btn_login = Button(self.root, text="Sign In", font=("times new roman", 20), bd=0, cursor="hand2").place(x=200, y=415, width=180)
+        btn_login = Button(self.root, text="Sign In",command=self.sign_in, font=("times new roman", 20), bd=0, cursor="hand2").place(x=200, y=415, width=180)
         #self.check()
 
     def disp(self):
@@ -96,6 +96,10 @@ class Register:
             cursor = conn.cursor()
             cursor.execute('DELETE FROM Table_2')
             msg = messagebox.showinfo("Delete Record", "All Row Deleted")
+
+    def sign_in(self):
+        from login_page import Login
+        obj_login = Login(self.root)
 
     def register_data(self):
         if self.txt_fname.get()=="" or self.txt_email.get()=="" or self.txt_contact.get()=="" or self.cmb_quest.get()=="Select" or self.txt_answer.get()=="" or self.txt_password.get()=="" or self.txt_c_password.get()=="":
@@ -128,6 +132,7 @@ class Register:
         conn.commit()
         #msg = messagebox.showinfo("DB Demo", "Registration Successful")
 
-root = Tk()
-obj = Register(root)
-root.mainloop()
+if __name__=='__main__':
+    root = Tk()
+    obj = Register(root)
+    root.mainloop()
