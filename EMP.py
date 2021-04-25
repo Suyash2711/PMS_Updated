@@ -184,5 +184,6 @@ command=InformationEntry, fg="black", bg="dark gray").grid(row=0, column=2)
  
 ButtonExit = Button(flb, text='Exit System', padx=16, pady=16, bd=15, font=('arial', 14, 'bold'), relief="groove", width=14, command=Exit,
 fg="black", bg="dark gray").grid(row=0, column=3)
- 
-root.mainloop()
+
+if __name__=='__main__':
+    root.mainloop()
